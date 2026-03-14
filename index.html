@@ -290,13 +290,24 @@
     .service-card {
       background: white;
       border-radius: 16px;
-      padding: 22px 18px;
       margin: 0 auto 14px;
       max-width: 640px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .service-card-header {
+      padding: 22px 18px;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 16px;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .service-card.open .service-card-header {
+      border-bottom: 1px solid #f0f0f0;
     }
 
     .service-icon {
@@ -304,10 +315,14 @@
       flex-shrink: 0;
     }
 
+    .service-content {
+      flex: 1;
+    }
+
     .service-content h3 {
       font-size: 16px;
       font-weight: 800;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       color: #1a1a2e;
     }
 
@@ -325,7 +340,67 @@
       font-weight: 700;
       padding: 2px 10px;
       border-radius: 20px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+    }
+
+    .service-chevron {
+      font-size: 18px;
+      color: #aaa;
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+
+    .service-card.open .service-chevron {
+      transform: rotate(180deg);
+    }
+
+    .service-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .service-card.open .service-detail {
+      max-height: 600px;
+    }
+
+    .service-detail-inner {
+      padding: 18px 18px 22px;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    .service-detail-inner ul {
+      list-style: none;
+      margin: 10px 0;
+    }
+
+    .service-detail-inner ul li {
+      padding: 4px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .service-detail-inner ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #e63946;
+      font-weight: 700;
+    }
+
+    .service-detail-cta {
+      display: block;
+      margin-top: 14px;
+      background: linear-gradient(135deg, #00b900, #00a000);
+      color: white;
+      text-align: center;
+      padding: 13px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
     }
 
     /* ===== CONTACT SECTION ===== */
@@ -538,48 +613,126 @@
     <div class="section-title">🤝 サポート内容一覧</div>
 
     <div class="service-card">
-      <div class="service-icon">🏋️</div>
-      <div class="service-content">
-        <span class="service-tag">人気No.1</span>
-        <h3>パーソナルトレーニング</h3>
-        <p>専属トレーナーとして、あなたの目標に合わせたオーダーメイドのトレーニングを提供します。</p>
+      <div class="service-card-header">
+        <div class="service-icon">🏋️</div>
+        <div class="service-content">
+          <span class="service-tag">人気No.1</span>
+          <h3>パーソナルトレーニング</h3>
+        </div>
+        <span class="service-chevron">›</span>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-inner">
+          <p>専属トレーナーとして、あなたの目標に合わせたオーダーメイドのトレーニングを提供します。</p>
+          <ul>
+            <li>完全マンツーマン指導</li>
+            <li>目標・体力に合わせたメニュー作成</li>
+            <li>フォーム・姿勢の徹底サポート</li>
+            <li>トレーニング後のフィードバック</li>
+          </ul>
+          <a class="service-detail-cta" href="https://lin.ee/NO7C6EUb" target="_blank" rel="noopener">💬 LINEで無料相談する</a>
+        </div>
       </div>
     </div>
 
     <div class="service-card">
-      <div class="service-icon">🥗</div>
-      <div class="service-content">
-        <h3>食事管理サポート</h3>
-        <p>ストレスなく続けられる食事プランを一緒に作成。無理なく理想の体を目指せます。</p>
+      <div class="service-card-header">
+        <div class="service-icon">🥗</div>
+        <div class="service-content">
+          <h3>食事管理サポート</h3>
+        </div>
+        <span class="service-chevron">›</span>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-inner">
+          <p>ストレスなく続けられる食事プランを一緒に作成。無理なく理想の体を目指せます。</p>
+          <ul>
+            <li>個人に合わせた食事プラン作成</li>
+            <li>外食・コンビニOKの実践的アドバイス</li>
+            <li>LINEで毎日の食事チェック</li>
+            <li>リバウンドしない習慣づくり</li>
+          </ul>
+          <a class="service-detail-cta" href="https://lin.ee/NO7C6EUb" target="_blank" rel="noopener">💬 LINEで無料相談する</a>
+        </div>
       </div>
     </div>
 
     <div class="service-card">
-      <div class="service-icon">💻</div>
-      <div class="service-content">
-        <span class="service-tag">オンライン対応</span>
-        <h3>オンラインコーチング</h3>
-        <p>全国どこからでも受けられるオンラインサポート。LINEで気軽に相談できます。</p>
+      <div class="service-card-header">
+        <div class="service-icon">💻</div>
+        <div class="service-content">
+          <span class="service-tag">オンライン対応</span>
+          <h3>オンラインコーチング</h3>
+        </div>
+        <span class="service-chevron">›</span>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-inner">
+          <p>全国どこからでも受けられるオンラインサポート。LINEで気軽に相談できます。</p>
+          <ul>
+            <li>完全オンライン・場所を選ばない</li>
+            <li>LINEでいつでも質問OK</li>
+            <li>週1回のオンライン面談（ビデオ通話）</li>
+            <li>トレーニング動画・食事記録のチェック</li>
+          </ul>
+          <a class="service-detail-cta" href="https://lin.ee/NO7C6EUb" target="_blank" rel="noopener">💬 LINEで無料相談する</a>
+        </div>
       </div>
     </div>
 
     <div class="service-card">
-      <div class="service-icon">🧠</div>
-      <div class="service-content">
-        <h3>マインドセット指導</h3>
-        <p>継続できる仕組みと思考を一緒に作ります。三日坊主を克服して変わりたい方へ。</p>
+      <div class="service-card-header">
+        <div class="service-icon">🧠</div>
+        <div class="service-content">
+          <h3>マインドセット指導</h3>
+        </div>
+        <span class="service-chevron">›</span>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-inner">
+          <p>継続できる仕組みと思考を一緒に作ります。三日坊主を克服して変わりたい方へ。</p>
+          <ul>
+            <li>継続できる環境・習慣の設計</li>
+            <li>モチベーションに頼らない仕組みづくり</li>
+            <li>自己肯定感を高めるメンタルサポート</li>
+            <li>目標設定と行動計画の作成</li>
+          </ul>
+          <a class="service-detail-cta" href="https://lin.ee/NO7C6EUb" target="_blank" rel="noopener">💬 LINEで無料相談する</a>
+        </div>
       </div>
     </div>
 
     <div class="service-card">
-      <div class="service-icon">🆓</div>
-      <div class="service-content">
-        <span class="service-tag">まずはこちら</span>
-        <h3>無料オンラインカウンセリング</h3>
-        <p>初めての方は無料カウンセリングから。お気軽にご相談ください！</p>
+      <div class="service-card-header">
+        <div class="service-icon">🆓</div>
+        <div class="service-content">
+          <span class="service-tag">まずはこちら</span>
+          <h3>無料オンラインカウンセリング</h3>
+        </div>
+        <span class="service-chevron">›</span>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-inner">
+          <p>初めての方はまず無料カウンセリングから！お気軽にご相談ください。</p>
+          <ul>
+            <li>所要時間：約30〜60分</li>
+            <li>現在の悩みや目標をヒアリング</li>
+            <li>最適なサポートプランのご提案</li>
+            <li>完全無料・勧誘なし</li>
+          </ul>
+          <a class="service-detail-cta" href="https://lin.ee/NO7C6EUb" target="_blank" rel="noopener">💬 今すぐ無料カウンセリングを申し込む</a>
+        </div>
       </div>
     </div>
   </section>
+
+  <script>
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.querySelector('.service-card-header').addEventListener('click', () => {
+        card.classList.toggle('open');
+      });
+    });
+  </script>
 
   <!-- CONTACT -->
   <section id="contact">

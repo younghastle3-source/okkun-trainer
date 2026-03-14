@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おっくん｜栃木パーソナルトレーナー</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: #f5f5f0;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: white;
+      text-align: center;
+      padding: 40px 20px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,200,0,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .header-icon {
+      font-size: 60px;
+      margin-bottom: 12px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    header .subtitle {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 1px;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 8px;
+    }
+
+    nav ul::-webkit-scrollbar { display: none; }
+
+    nav ul li a {
+      display: block;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: #555;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    nav ul li a:hover {
+      color: #e63946;
+      border-bottom-color: #e63946;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 36px 20px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, #e63946, transparent);
+    }
+
+    /* ===== GREETING SECTION ===== */
+    #greeting {
+      background: white;
+      border-radius: 16px;
+      padding: 28px 20px;
+      margin: 16px 16px 0;
+      max-width: none;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .greeting-message {
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .highlight-quote {
+      background: linear-gradient(135deg, #fff8e1, #fff3cd);
+      border-left: 4px solid #ffc107;
+      border-radius: 0 12px 12px 0;
+      padding: 16px;
+      margin: 20px 0;
+      font-weight: 700;
+      font-size: 15px;
+      color: #1a1a2e;
+      line-height: 1.8;
+    }
+
+    .list-block {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+
+    .list-block p {
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 6px 0;
+      font-size: 14px;
+    }
+
+    .list-item .icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .before-list .list-block {
+      background: #fff0f0;
+    }
+
+    .after-list .list-block {
+      background: #f0f4ff;
+    }
+
+    .arrow-divider {
+      text-align: center;
+      font-size: 28px;
+      margin: 8px 0;
+      color: #ccc;
+    }
+
+    .cta-inline {
+      background: linear-gradient(135deg, #e63946, #c1121f);
+      color: white;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .cta-inline p {
+      font-size: 14px;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+
+    .cta-inline strong {
+      font-size: 17px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* ===== RESULTS SECTION ===== */
+    #results {
+      background: #1a1a2e;
+      color: white;
+      padding: 36px 16px;
+      margin: 0;
+      max-width: none;
+    }
+
+    #results .section-title {
+      color: white;
+      max-width: 640px;
+      margin: 0 auto 20px;
+    }
+
+    #results .section-title::after {
+      background: linear-gradient(to right, #ffc107, transparent);
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .result-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 18px 14px;
+      text-align: center;
+    }
+
+    .result-card .emoji {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .result-card .number {
+      font-size: 26px;
+      font-weight: 900;
+      color: #ffc107;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .result-card .label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.4;
+    }
+
+    .result-note {
+      max-width: 640px;
+      margin: 16px auto 0;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+    }
+
+    /* ===== SERVICES SECTION ===== */
+    #services {
+      padding: 36px 16px;
+      max-width: none;
+    }
+
+    #services .section-title {
+      max-width: 640px;
+      margin: 0 auto 20px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 16px;
+      padding: 22px 18px;
+      margin: 0 auto 14px;
+      max-width: 640px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .service-icon {
+      font-size: 36px;
+      flex-shrink: 0;
+    }
+
+    .service-content h3 {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #1a1a2e;
+    }
+
+    .service-content p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .service-tag {
+      display: inline-block;
+      background: #e63946;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    #contact {
+      background: white;
+      padding: 36px 16px;
+      max-width: none;
+    }
+
+    #contact .section-title {
+      max-width: 640px;
+      margin: 0 auto 20px;
+    }
+
+    .contact-intro {
+      max-width: 640px;
+      margin: 0 auto 20px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .contact-btn:active {
+      transform: scale(0.97);
+    }
+
+    .contact-btn .btn-icon {
+      font-size: 24px;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-btn .btn-text {
+      flex: 1;
+    }
+
+    .contact-btn .btn-text small {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    .contact-btn .arrow {
+      font-size: 18px;
+      opacity: 0.7;
+    }
+
+    .btn-line {
+      background: linear-gradient(135deg, #00b900, #00a000);
+      color: white;
+    }
+
+    .btn-hp {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+    }
+
+    .btn-instagram {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+    }
+
+    .btn-email {
+      background: linear-gradient(135deg, #4a90d9, #357abd);
+      color: white;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-icon">💪</div>
+    <h1>おっくん</h1>
+    <p class="subtitle">栃木パーソナルトレーナー</p>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li><a href="#greeting">📌 あいさつ</a></li>
+      <li><a href="#results">📌 サポート実績</a></li>
+      <li><a href="#services">📌 サポート内容</a></li>
+      <li><a href="#contact">📌 お問い合わせ</a></li>
+    </ul>
+  </nav>
+
+  <!-- GREETING -->
+  <section id="greeting">
+    <div class="section-title">👋 こんにちは！</div>
+
+    <p class="greeting-message">
+      栃木でパーソナルトレーナーとして活動しているおっくんです！
+    </p>
+
+    <p class="greeting-message">
+      ボディメイクを通して、
+    </p>
+
+    <div class="highlight-quote">
+      「自分自身をもっと好きになってキラキラと生きてほしい」<br>
+      「理想の自分になって日常をさらに楽しんで過ごしてもらいたい」
+    </div>
+
+    <p class="greeting-message">
+      という想いのもと、活動しています。
+    </p>
+
+    <div class="before-list">
+      <div class="list-block">
+        <p>わたし自身、元々は…</p>
+        <div class="list-item"><span class="icon">✅</span><span>借金まみれで暴飲暴食</span></div>
+        <div class="list-item"><span class="icon">✅</span><span>超絶三日坊主</span></div>
+        <div class="list-item"><span class="icon">✅</span><span>自己肯定感ゼロ</span></div>
+      </div>
+    </div>
+
+    <div class="arrow-divider">↓</div>
+
+    <p class="greeting-message">だから、こんなお悩みがある方のサポートが得意です！</p>
+
+    <div class="after-list">
+      <div class="list-block">
+        <div class="list-item"><span class="icon">🌀</span><span>痩せたいのに食べてしまう</span></div>
+        <div class="list-item"><span class="icon">🌀</span><span>継続が大の苦手</span></div>
+        <div class="list-item"><span class="icon">🌀</span><span>モチベーションにかなり左右されてしまう</span></div>
+      </div>
+    </div>
+
+    <p class="greeting-message">
+      そんな方こそぜひサポートさせてください!! 💪
+    </p>
+
+    <div class="cta-inline">
+      <p>各種サポートに興味を持ってくださった方は、まずは</p>
+      <strong>【無料オンラインカウンセリング】</strong>
+      <p>を公式LINEから受けていただくのがおすすめです✨</p>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results">
+    <div class="section-title">💪 サポート実績</div>
+
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="emoji">🏆</div>
+        <div class="number">100<span style="font-size:16px">名+</span></div>
+        <div class="label">サポート実績</div>
+      </div>
+      <div class="result-card">
+        <div class="emoji">⭐</div>
+        <div class="number">4.9</div>
+        <div class="label">顧客満足度</div>
+      </div>
+      <div class="result-card">
+        <div class="emoji">📉</div>
+        <div class="number">-8<span style="font-size:16px">kg</span></div>
+        <div class="label">平均ダイエット実績</div>
+      </div>
+      <div class="result-card">
+        <div class="emoji">🔄</div>
+        <div class="number">90<span style="font-size:16px">%+</span></div>
+        <div class="label">継続率</div>
+      </div>
+    </div>
+
+    <p class="result-note">※ 実績の詳細は公式LINEまたはHPにてご確認いただけます</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-title">🤝 サポート内容一覧</div>
+
+    <div class="service-card">
+      <div class="service-icon">🏋️</div>
+      <div class="service-content">
+        <span class="service-tag">人気No.1</span>
+        <h3>パーソナルトレーニング</h3>
+        <p>専属トレーナーとして、あなたの目標に合わせたオーダーメイドのトレーニングを提供します。</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🥗</div>
+      <div class="service-content">
+        <h3>食事管理サポート</h3>
+        <p>ストレスなく続けられる食事プランを一緒に作成。無理なく理想の体を目指せます。</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">💻</div>
+      <div class="service-content">
+        <span class="service-tag">オンライン対応</span>
+        <h3>オンラインコーチング</h3>
+        <p>全国どこからでも受けられるオンラインサポート。LINEで気軽に相談できます。</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🧠</div>
+      <div class="service-content">
+        <h3>マインドセット指導</h3>
+        <p>継続できる仕組みと思考を一緒に作ります。三日坊主を克服して変わりたい方へ。</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🆓</div>
+      <div class="service-content">
+        <span class="service-tag">まずはこちら</span>
+        <h3>無料オンラインカウンセリング</h3>
+        <p>初めての方は無料カウンセリングから。お気軽にご相談ください！</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-title">ℹ️ お問い合わせ</div>
+
+    <p class="contact-intro">
+      サポートの依頼やご質問などございましたら、お気軽にご連絡ください😊
+    </p>
+
+    <div class="contact-grid">
+      <a class="contact-btn btn-line" href="https://lin.ee/18CDI8G" target="_blank" rel="noopener">
+        <div class="btn-icon">💬</div>
+        <div class="btn-text">
+          公式LINE
+          <small>無料カウンセリングはこちら</small>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <a class="contact-btn btn-hp" href="https://staygoldgym.jp/" target="_blank" rel="noopener">
+        <div class="btn-icon">🏠</div>
+        <div class="btn-text">
+          公式HP
+          <small>staygoldgym.jp</small>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <a class="contact-btn btn-instagram" href="https://www.instagram.com/yuji_staygoldgym_tennoji/" target="_blank" rel="noopener">
+        <div class="btn-icon">📸</div>
+        <div class="btn-text">
+          Instagram
+          <small>最新情報をチェック</small>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <a class="contact-btn btn-email" href="mailto:staygoldgym.tennoji@gmail.com">
+        <div class="btn-icon">✉️</div>
+        <div class="btn-text">
+          メール
+          <small>staygoldgym.tennoji@gmail.com</small>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024 おっくん｜栃木パーソナルトレーナー</p>
+  </footer>
+
+</body>
+</html>
